@@ -8,9 +8,7 @@
 // ---- API BASE (production + optional dev override) ----
 const API_BASE =
   window.INKTRACK_API_BASE ||
-  (window.location.hostname === "localhost"
-    ? "http://localhost:8787"
-    : "https://inktrack-api.lapgonzalez96.workers.dev");
+  (window.location.hostname === "https://inktrack-api.lapgonzalez96.workers.dev");
     
 document.addEventListener("DOMContentLoaded", () => {
 

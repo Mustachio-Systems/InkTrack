@@ -19,7 +19,7 @@
 		// Comma-separated list of origins allowed to call this API.
 		// Set this to your Cloudflare Pages URL(s), e.g.:
 		// "https://inktrack.pages.dev,https://yourcustomdomain.com"
-		"ALLOWED_ORIGIN": "http://localhost:8080,http://127.0.0.1:8080,https://tattoo-income-tracker.pages.dev"
+		"ALLOWED_ORIGIN": "https://tattoo-income-tracker.pages.dev"
 	}
 	// After running `wrangler d1 create inktrack-db`, paste the
 	// database_id it gives you above. Then run the migration:
