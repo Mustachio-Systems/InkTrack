@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Create Your Profile — InkTrack</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="assets/style.css">
+    <script>window.INKTRACK_API_BASE = "http://localhost:8787";</script>
 </head>
 <body class="min-h-screen flex flex-col">
 
@@ -15,7 +16,7 @@
         </div>
     </header>
 
-    <main class="flex-1 flex items-center justify-center p-5 md:p-8">
+    <main class="flex-1 flex items-center justify-center p-5 md:p-8 safe-bottom">
         <div class="w-full max-w-md rise">
             <div class="text-center mb-6">
                 <span class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ink-red-bright)]">New Artist Profile</span>
@@ -38,13 +39,13 @@
 
                 <div>
                     <label for="password" class="block font-mono text-xs uppercase tracking-widest text-[var(--pencil)] mb-1.5">Password</label>
-                    <input type="password" id="password" required minlength="6" placeholder="At least 6 characters" autocomplete="new-password"
+                    <input type="password" id="password" required minlength="8" placeholder="At least 8 characters" autocomplete="new-password"
                         class="w-full bg-[var(--skin-deep)] border border-[var(--line-bright)] rounded p-3 text-[var(--paper)] focus:outline-none focus:border-[var(--ink-red-bright)]">
                 </div>
 
                 <p id="signup-error" class="hidden font-mono text-xs text-[var(--ink-red-bright)] bg-[var(--ink-red)]/10 border border-[var(--ink-red)]/30 rounded p-2.5"></p>
 
-                <button type="submit" class="w-full font-mono text-sm uppercase tracking-widest bg-[var(--ink-red)] text-[var(--paper)] py-3.5 rounded hover:bg-[var(--ink-red-dim)] transition">
+                <button type="submit" class="w-full font-mono text-sm uppercase tracking-widest bg-[var(--ink-red)] text-[var(--paper)] py-3.5 rounded hover:bg-[var(--ink-red-dim)] transition active:scale-[0.98]">
                     Create Profile
                 </button>
 
@@ -54,7 +55,7 @@
             </form>
 
             <p class="font-mono text-[10px] text-[var(--pencil-dim)] text-center mt-5 max-w-sm mx-auto leading-relaxed">
-                This runs locally in your browser for now — your data is stored on this device only. Use the same browser each time to see your history.
+                Your data syncs securely to your account — log in from any phone, tablet, or computer. Passwords are hashed, never stored in plain text.
             </p>
         </div>
     </main>

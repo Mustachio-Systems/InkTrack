@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Log In — InkTrack</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="assets/style.css">
+    <script>window.INKTRACK_API_BASE = "http://localhost:8787";</script>
 </head>
 <body class="min-h-screen flex flex-col">
 
@@ -15,7 +16,7 @@
         </div>
     </header>
 
-    <main class="flex-1 flex items-center justify-center p-5 md:p-8">
+    <main class="flex-1 flex items-center justify-center p-5 md:p-8 safe-bottom">
         <div class="w-full max-w-md rise">
             <div class="text-center mb-6">
                 <span class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ink-teal-bright)]">Welcome Back</span>
@@ -37,7 +38,7 @@
 
                 <p id="login-error" class="hidden font-mono text-xs text-[var(--ink-red-bright)] bg-[var(--ink-red)]/10 border border-[var(--ink-red)]/30 rounded p-2.5"></p>
 
-                <button type="submit" class="w-full font-mono text-sm uppercase tracking-widest bg-[var(--ink-teal-bright)] text-[var(--skin)] py-3.5 rounded hover:opacity-90 transition">
+                <button type="submit" class="w-full font-mono text-sm uppercase tracking-widest bg-[var(--ink-teal-bright)] text-[var(--skin)] py-3.5 rounded hover:opacity-90 transition active:scale-[0.98]">
                     Log In
                 </button>
 
