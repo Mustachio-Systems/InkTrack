@@ -1,31 +1,31 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "inktrack-api",
-  "main": "src/index.js",
-  "compatibility_date": "2025-04-01",
-  "compatibility_flags": ["nodejs_compat"],
-
-  "d1_databases": [
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "inktrack-api",
+	"main": "src/index.js",
+	"compatibility_date": "2025-04-01",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"d1_databases": [
     {
       "binding": "DB",
       "database_name": "inktrack-db",
-      "database_id": "REPLACE_WITH_YOUR_DATABASE_ID"
+      "database_id": "921824e7-6ae3-4893-bb3d-0bd4e4e89bcf",
+      "remote": true
     }
   ],
-
-  "vars": {
-    "ENVIRONMENT": "production",
-    // Comma-separated list of origins allowed to call this API.
-    // Set this to your Cloudflare Pages URL(s), e.g.:
-    // "https://inktrack.pages.dev,https://yourcustomdomain.com"
-    "ALLOWED_ORIGIN": "http://localhost:8080,http://127.0.0.1:8080,https://REPLACE_WITH_YOUR_PAGES_URL.pages.dev"
-  }
-
-  // After running `wrangler d1 create inktrack-db`, paste the
-  // database_id it gives you above. Then run the migration:
-  //   npm run db:migrate:remote
-  //
-  // To set the session-signing secret (REQUIRED before deploy):
-  //   wrangler secret put SESSION_SECRET
-  // (generate one locally with: openssl rand -hex 32)
+	"vars": {
+		"ENVIRONMENT": "production",
+		// Comma-separated list of origins allowed to call this API.
+		// Set this to your Cloudflare Pages URL(s), e.g.:
+		// "https://inktrack.pages.dev,https://yourcustomdomain.com"
+		"ALLOWED_ORIGIN": "http://localhost:8080,http://127.0.0.1:8080,tattoo-income-tracker.pages.dev"
+	}
+	// After running `wrangler d1 create inktrack-db`, paste the
+	// database_id it gives you above. Then run the migration:
+	//   npm run db:migrate:remote
+	//
+	// To set the session-signing secret (REQUIRED before deploy):
+	//   wrangler secret put SESSION_SECRET
+	// (generate one locally with: openssl rand -hex 32)
 }

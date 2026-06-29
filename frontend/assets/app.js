@@ -6,7 +6,7 @@
 // ============================================================
 
 // ---- SET THIS to your deployed Worker URL ----
-const API_BASE = window.INKTRACK_API_BASE || "https://inktrack-api.YOUR-SUBDOMAIN.workers.dev";
+const API_BASE = window.INKTRACK_API_BASE || "https://inktrack-api.lapgonzalez96.workers.dev";
 
 document.addEventListener("DOMContentLoaded", () => {
 
