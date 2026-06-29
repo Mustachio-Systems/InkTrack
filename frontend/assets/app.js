@@ -8,8 +8,8 @@
 // ---- API BASE (production + optional dev override) ----
 const API_BASE =
   window.INKTRACK_API_BASE ||
-  (window.location.hostname === "https://inktrack-api.lapgonzalez96.workers.dev");
-    
+  "https://inktrack-api.lapgonzalez96.workers.dev";
+      
 document.addEventListener("DOMContentLoaded", () => {
 
   async function api(path, options = {}) {

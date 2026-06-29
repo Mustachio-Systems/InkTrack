@@ -9,6 +9,6 @@
     script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';
     style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
     font-src https://fonts.gstatic.com;
-    connect-src 'self' https://inktrack-api.lapgonzalez96.workers.dev;
+    connect-src 'self' https://inktrack-api.lapgonzalez96.workers.dev https://cdn.jsdelivr.net;
     img-src 'self' data:;
 */
