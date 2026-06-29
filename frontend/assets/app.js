@@ -5,9 +5,13 @@
 // for instant UI paint while /api/me confirms the real session.
 // ============================================================
 
-// ---- SET THIS to your deployed Worker URL ----
-const API_BASE = window.INKTRACK_API_BASE || "https://inktrack-api.lapgonzalez96.workers.dev";
-
+// ---- API BASE (production + optional dev override) ----
+const API_BASE =
+  window.INKTRACK_API_BASE ||
+  (window.location.hostname === "localhost"
+    ? "http://localhost:8787"
+    : "https://inktrack-api.lapgonzalez96.workers.dev");
+    
 document.addEventListener("DOMContentLoaded", () => {
 
   async function api(path, options = {}) {
