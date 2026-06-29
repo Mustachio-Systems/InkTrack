@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build and Runtime Outputs
+.wrangler/
+dist/
+build/
+
+# Local Databases & Development State
+*.sqlite
+*.sqlite-journal
+*.sqlite-shm
+*.sqlite-wal
+.miniflare/

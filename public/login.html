@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In — InkTrack</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="border-b border-[var(--line)]">
+        <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center">
+            <a href="index.html" class="font-display text-2xl tracking-wide text-[var(--paper)]">INK<span class="text-[var(--ink-red-bright)]">TRACK</span></a>
+        </div>
+    </header>
+
+    <main class="flex-1 flex items-center justify-center p-5 md:p-8">
+        <div class="w-full max-w-md rise">
+            <div class="text-center mb-6">
+                <span class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ink-teal-bright)]">Welcome Back</span>
+                <h1 class="font-display text-3xl mt-2">OPEN YOUR LEDGER</h1>
+            </div>
+
+            <form id="login-form" class="stencil-card halftone p-6 md:p-8 space-y-4">
+                <div>
+                    <label for="email" class="block font-mono text-xs uppercase tracking-widest text-[var(--pencil)] mb-1.5">Email</label>
+                    <input type="email" id="email" required placeholder="artist@studio.com" autocomplete="email"
+                        class="w-full bg-[var(--skin-deep)] border border-[var(--line-bright)] rounded p-3 text-[var(--paper)] focus:outline-none focus:border-[var(--ink-teal-bright)]">
+                </div>
+
+                <div>
+                    <label for="password" class="block font-mono text-xs uppercase tracking-widest text-[var(--pencil)] mb-1.5">Password</label>
+                    <input type="password" id="password" required placeholder="••••••••" autocomplete="current-password"
+                        class="w-full bg-[var(--skin-deep)] border border-[var(--line-bright)] rounded p-3 text-[var(--paper)] focus:outline-none focus:border-[var(--ink-teal-bright)]">
+                </div>
+
+                <p id="login-error" class="hidden font-mono text-xs text-[var(--ink-red-bright)] bg-[var(--ink-red)]/10 border border-[var(--ink-red)]/30 rounded p-2.5"></p>
+
+                <button type="submit" class="w-full font-mono text-sm uppercase tracking-widest bg-[var(--ink-teal-bright)] text-[var(--skin)] py-3.5 rounded hover:opacity-90 transition">
+                    Log In
+                </button>
+
+                <p class="text-center font-mono text-xs text-[var(--pencil)] pt-1">
+                    New here? <a href="signup.html" class="text-[var(--ink-red-bright)] hover:underline">Create a profile</a>
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>

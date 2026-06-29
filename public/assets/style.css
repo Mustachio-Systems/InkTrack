@@ -1,0 +1,135 @@
+/* ============================================================
+   INKTRACK — Design Tokens, v2.1
+   Subject: flash art and stencil carbon, not a spreadsheet.
+   Halftone shading, bold condensed display lettering, ink
+   colors pulled from a classic American Traditional palette.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --skin: #1B1614;          /* near-black, warm like old leather */
+  --skin-deep: #120F0E;
+  --panel: #221B18;
+  --panel-raised: #2B2220;
+  --paper: #F3ECDC;         /* aged stencil paper */
+  --ink-red: #B8392F;       /* classic flash red */
+  --ink-red-bright: #D8492F;
+  --ink-red-dim: #8A2A22;
+  --ink-teal: #2E6E64;      /* faded flash green/teal */
+  --ink-teal-bright: #4A9A8A;
+  --ink-gold: #C9A246;      /* flash gold accent, used sparingly */
+  --pencil: #9C8F80;
+  --pencil-dim: #635A4F;
+  --line: rgba(243, 236, 220, 0.08);
+  --line-bright: rgba(243, 236, 220, 0.16);
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+body {
+  background-color: var(--skin);
+  color: var(--paper);
+  font-family: 'Inter', sans-serif;
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(184, 57, 47, 0.07), transparent 40%),
+    radial-gradient(circle at 85% 100%, rgba(46, 110, 100, 0.06), transparent 45%);
+}
+
+.font-display { font-family: 'Anton', sans-serif; letter-spacing: 0.015em; }
+.font-accent { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.06em; }
+.font-mono { font-family: 'Space Mono', monospace; }
+
+/* Halftone dot texture */
+.halftone { position: relative; }
+.halftone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(243,236,220,0.5) 0.7px, transparent 0.7px);
+  background-size: 7px 7px;
+  opacity: 0.05;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Subtle paper-grain on dark surfaces */
+.grain { position: relative; }
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+.panel {
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.panel-raised {
+  background-color: var(--panel-raised);
+  border: 1px solid var(--line-bright);
+  border-radius: 10px;
+}
+
+.stencil-card {
+  background-color: var(--panel-raised);
+  border-radius: 4px;
+  box-shadow: 0 14px 34px -10px rgba(0,0,0,0.55), 0 2px 0 rgba(243,236,220,0.04) inset;
+}
+
+.needle-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--line-bright) 15%, var(--line-bright) 85%, transparent);
+}
+
+input:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--ink-red-bright);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--skin); }
+::-webkit-scrollbar-thumb { background: var(--panel-raised); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--pencil-dim); }
+
+@keyframes tick { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.tick-dot { animation: tick 1.6s ease-in-out infinite; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.rise { animation: rise 0.55s ease-out both; }
+
+.style-pill {
+  border: 1px solid var(--line-bright);
+  background: var(--panel);
+  color: var(--pencil);
+  transition: all 0.15s ease;
+}
+.style-pill:hover { border-color: var(--pencil); color: var(--paper); }
+.style-pill.active { background: var(--ink-red); border-color: var(--ink-red); color: var(--paper); }
+
+input[type="date"], input[type="number"] { color-scheme: dark; }
+
+/* NEW: Session cards inside the Audit Modal */
+.session-row {
+  background: var(--skin-deep);
+  border-left: 2px solid var(--line-bright);
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.session-row:hover { border-left-color: var(--ink-teal-bright); }

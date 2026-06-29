@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — InkTrack</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="min-h-screen flex flex-col md:flex-row">
+
+    <!-- MOBILE TOP BAR -->
+    <div class="md:hidden border-b border-[var(--line)] p-4 flex justify-between items-center w-full sticky top-0 bg-[var(--skin)]/95 backdrop-blur-sm z-30">
+        <span class="font-display text-xl tracking-wide">INK<span class="text-[var(--ink-red-bright)]">TRACK</span></span>
+        <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" class="font-mono text-xs uppercase tracking-widest border border-[var(--line-bright)] px-3 py-1.5 rounded">
+            Menu
+        </button>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="hidden md:flex flex-col w-full md:w-60 border-r border-[var(--line)] p-5 space-y-7 shrink-0 md:min-h-screen panel md:rounded-none md:border-y-0 md:border-l-0">
+        <div class="hidden md:block">
+            <span class="font-display text-2xl tracking-wide">INK<span class="text-[var(--ink-red-bright)]">TRACK</span></span>
+        </div>
+
+        <div class="panel-raised p-3.5">
+            <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] block mb-1">Logged in as</span>
+            <span id="top-artist-name" class="font-display text-lg block leading-tight">—</span>
+        </div>
+
+        <nav class="space-y-1 font-mono text-sm">
+            <a href="#" class="flex items-center gap-2 panel-raised text-[var(--ink-red-bright)] font-semibold px-3 py-2.5 rounded">
+                <span class="w-1.5 h-1.5 rounded-full bg-[var(--ink-red-bright)]"></span> Dashboard
+            </a>
+            <button id="export-btn" class="w-full text-left flex items-center gap-2 text-[var(--pencil)] hover:text-[var(--paper)] px-3 py-2.5 rounded transition">
+                <span class="w-1.5 h-1.5 rounded-full border border-[var(--pencil)]"></span> Export Backup
+            </button>
+            <button id="import-btn" class="w-full text-left flex items-center gap-2 text-[var(--pencil)] hover:text-[var(--paper)] px-3 py-2.5 rounded transition">
+                <span class="w-1.5 h-1.5 rounded-full border border-[var(--pencil)]"></span> Import Backup
+            </button>
+            <input type="file" id="import-file-input" accept="application/json" class="hidden">
+        </nav>
+
+        <button id="logout-btn" class="w-full text-left font-mono text-sm text-[var(--pencil)] hover:text-[var(--ink-red-bright)] px-3 py-2.5 mt-auto border-t border-[var(--line)] pt-4 transition">
+            Log Out
+        </button>
+    </aside>
+
+    <main class="flex-1 p-5 md:p-10 max-w-7xl mx-auto w-full">
+
+        <header class="flex flex-wrap justify-between items-start gap-3 mb-8">
+            <div>
+                <span class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ink-red-bright)]">Welcome back</span>
+                <h1 class="font-display text-3xl md:text-4xl mt-1">YOUR INCOME, LAID OUT</h1>
+            </div>
+            <div class="flex items-center gap-2 panel-raised px-3.5 py-2">
+                <span class="w-2 h-2 bg-[var(--ink-teal-bright)] rounded-full tick-dot"></span>
+                <span class="font-mono text-xs text-[var(--pencil)] uppercase tracking-widest">Live</span>
+            </div>
+        </header>
+
+        <!-- TREND CARDS -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="panel grain p-5">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] block">All-Time Net</span>
+                <div id="trend-lifetime-net" class="font-display text-3xl mt-1.5">$0.00</div>
+                <p class="font-mono text-[10px] text-[var(--pencil-dim)] mt-1.5">Every logged session, gains minus supplies</p>
+            </div>
+            <div class="panel grain p-5">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] block">Best Weekday</span>
+                <div id="trend-peak-day" class="font-display text-lg text-[var(--ink-teal-bright)] mt-2.5 leading-tight">No records yet</div>
+                <p class="font-mono text-[10px] text-[var(--pencil-dim)] mt-1.5">Highest average $/hr by day of week</p>
+            </div>
+            <div class="panel grain p-5">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] block">Best Style</span>
+                <div id="trend-best-style" class="font-display text-lg text-[var(--ink-gold)] mt-2.5 leading-tight">Tag sessions to see</div>
+                <p class="font-mono text-[10px] text-[var(--pencil-dim)] mt-1.5">Highest average $/hr by tattoo style</p>
+            </div>
+            <div class="panel grain p-5">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] block">This Week</span>
+                <div class="flex items-center gap-2 mt-1.5">
+                    <div id="trend-weekly-total" class="font-display text-2xl">$0.00</div>
+                    <div id="trend-weekly-badge" class="font-mono text-[10px] font-bold px-2 py-0.5 rounded border border-[var(--line-bright)] text-[var(--pencil)] uppercase tracking-wider">No Hours Yet</div>
+                </div>
+                <p class="font-mono text-[10px] text-[var(--pencil-dim)] mt-1.5">Monday through today, net</p>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- ENTRY FORM: the signature stencil card -->
+            <section class="stencil-card halftone p-6 h-fit lg:rotate-[-0.6deg]">
+                <div class="flex justify-between items-center border-b border-[var(--line-bright)] pb-3 mb-5">
+                    <h2 id="form-action-title" class="font-display text-lg">LOG NEW SESSION</h2>
+                </div>
+                <form id="tracker-form" class="space-y-4">
+                    <div>
+                        <label for="entry-date" class="block font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] mb-1.5">Session Date</label>
+                        <input type="date" id="entry-date" required class="w-full bg-[var(--skin-deep)] border border-[var(--line-bright)] rounded p-2.5 text-[var(--paper)] focus:outline-none focus:border-[var(--ink-red-bright)] font-mono text-sm">
+                    </div>
+                    <div>
+                        <label for="client-name" class="block font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] mb-1.5">Client Name <span class="text-[var(--pencil-dim)]">(optional)</span></label>
+                        <input type="text" id="client-name" placeholder="e.g. Sarah - Left Arm" class="w-full bg-[var(--skin-deep)] border border-[var(--line-bright)] rounded p-2.5 text-[var(--paper)] focus:outline-none focus:border-[var(--ink-red-bright)] font-mono text-sm">
+                    </div>
+                    <div>
+                        <label for="daily-gains" class="block font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] mb-1.5">Gross Gained ($)</label>
+                        <input type="number" id="daily-gains" required step="0.01" min="0" inputmode="decimal" placeholder="0.00" class="w-full bg-[var(--skin-deep)] border border-[var(--line-bright)] rounded p-2.5 text-[var(--paper)] focus:outline-none focus:border-[var(--ink-red-bright)] font-mono text-sm">
+                    </div>
+                    <div>
+                        <label for="daily-hours" class="block font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] mb-1.5">Hours Worked</label>
+                        <input type="number" id="daily-hours" required step="0.1" min="0.1" inputmode="decimal" placeholder="e.g. 3.5" class="w-full bg-[var(--skin-deep)] border border-[var(--line-bright)] rounded p-2.5 text-[var(--paper)] focus:outline-none focus:border-[var(--ink-red-bright)] font-mono text-sm">
+                    </div>
+                    <div>
+                        <label for="supply-spend" class="block font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] mb-1.5">Supply Spend <span class="text-[var(--pencil-dim)]">(optional)</span></label>
+                        <input type="number" id="supply-spend" step="0.01" min="0" inputmode="decimal" placeholder="Leave blank if none" class="w-full bg-[var(--skin-deep)] border border-[var(--line-bright)] rounded p-2.5 text-[var(--paper)] focus:outline-none focus:border-[var(--ink-red-bright)] font-mono text-sm">
+                    </div>
+                    <div>
+                        <label class="block font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)] mb-1.5">Style <span class="text-[var(--pencil-dim)]">(optional)</span></label>
+                        <div id="style-picker" class="flex flex-wrap gap-1.5"></div>
+                    </div>
+                    <p id="form-error" class="hidden font-mono text-xs text-[var(--ink-red-bright)] bg-[var(--ink-red)]/10 border border-[var(--ink-red)]/30 rounded p-2.5"></p>
+                    <div class="flex gap-2 pt-1">
+                        <button type="submit" id="form-submit-btn" class="flex-1 font-mono text-xs uppercase tracking-widest bg-[var(--ink-red)] text-[var(--paper)] py-3 rounded hover:bg-[var(--ink-red-dim)] transition">
+                            Save Session
+                        </button>
+                        <button type="button" id="form-cancel-btn" class="hidden font-mono text-xs uppercase tracking-widest border border-[var(--line-bright)] text-[var(--pencil)] py-3 px-4 rounded hover:border-[var(--paper)] hover:text-[var(--paper)] transition">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- STATS + PROJECTIONS -->
+            <section class="lg:col-span-2 space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="panel p-5">
+                        <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)]">Average Hourly Rate</span>
+                        <div id="stat-hourly" class="font-display text-3xl mt-1.5">$0.00<span class="text-base text-[var(--pencil)] font-mono"> /hr</span></div>
+                        <p class="font-mono text-[10px] text-[var(--pencil-dim)] mt-2">Based on all logged sessions to date</p>
+                    </div>
+                    <div class="panel p-5">
+                        <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--pencil)]">Income Velocity</span>
+                        <div id="stat-second" class="font-display text-3xl text-[var(--ink-teal-bright)] mt-1.5">$0.0000<span class="text-base text-[var(--pencil)] font-mono"> /sec</span></div>
+                        <p class="font-mono text-[10px] text-[var(--pencil-dim)] mt-2">Your average earning pace while in the chair</p>
+                    </div>
+                </div>
+
+                <div class="needle-divider"></div>
+
+                <div>
+                    <h3 class="font-mono text-xs uppercase text-[var(--pencil)] tracking-widest mb-4">Projected Average Pace</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div class="panel p-3.5">
+                            <span class="font-mono text-[10px] text-[var(--pencil)]">Half Month</span>
+                            <div id="proj-halfmonth" class="font-display text-lg mt-1">$0.00</div>
+                        </div>
+                        <div class="panel p-3.5">
+                            <span class="font-mono text-[10px] text-[var(--pencil)]">Monthly</span>
+                            <div id="proj-monthly" class="font-display text-lg mt-1">$0.00</div>
+                        </div>
+                        <div class="panel p-3.5">
+                            <span class="font-mono text-[10px] text-[var(--pencil)]">Quarterly</span>
+                            <div id="proj-3month" class="font-display text-lg mt-1">$0.00</div>
+                        </div>
+                        <div class="panel p-3.5 border-[var(--ink-red)]/40">
+                            <span class="font-mono text-[10px] text-[var(--pencil)]">Annual</span>
+                            <div id="proj-1year" class="font-display text-lg text-[var(--ink-red-bright)] mt-1">$0.00</div>
+                        </div>
+                    </div>
+                    <p class="font-mono text-[10px] text-[var(--pencil-dim)] mt-3">Projections use your all-time average hourly rate, giving a stable view of your yearly pace.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- WEEKLY HISTORY -->
+        <section class="mt-8 panel p-5 md:p-6">
+            <h2 class="font-display text-xl mb-4">WEEKLY HISTORY</h2>
+            <div id="empty-state" class="hidden text-center py-14">
+                <p class="font-display text-xl text-[var(--pencil)] mb-2">NO SESSIONS LOGGED YET</p>
+                <p class="font-mono text-sm text-[var(--pencil-dim)]">Fill out the ticket on the left to log your first piece.</p>
+            </div>
+            <div id="table-wrapper" class="overflow-x-auto">
+                <table class="w-full text-left text-sm border-collapse min-w-[640px]">
+                    <thead>
+                        <tr class="border-b border-[var(--line)] text-[var(--pencil)] uppercase text-[11px] tracking-widest font-mono">
+                            <th class="py-3 px-3">Work Week</th>
+                            <th class="py-3 px-3">Net Income</th>
+                            <th class="py-3 px-3">Hours</th>
+                            <th class="py-3 px-3">Avg $/hr</th>
+                            <th class="py-3 px-3">Sessions</th>
+                            <th class="py-3 px-3">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="weekly-logs-tbody" class="divide-y divide-[var(--line)]"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- AUDIT MODAL -->
+    <div id="analytics-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 p-4">
+        <div class="panel-raised grain p-5 md:p-6 w-full max-w-4xl relative max-h-[90vh] overflow-y-auto">
+
+            <button id="close-modal-btn" aria-label="Close" class="absolute top-4 right-4 text-[var(--pencil)] hover:text-[var(--paper)] font-mono text-xl p-1 leading-none">✕</button>
+
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-5 border-b border-[var(--line)] pb-4 pr-8 gap-3">
+                <div>
+                    <span class="font-mono text-[10px] uppercase tracking-widest text-[var(--ink-red-bright)]">Week Audit</span>
+                    <h2 id="modal-week-title" class="font-display text-2xl mt-1">Week Log</h2>
+                </div>
+                <button id="delete-week-btn" class="font-mono text-xs font-bold uppercase tracking-wider border border-[var(--ink-red)]/30 text-[var(--ink-red-bright)] hover:bg-[var(--ink-red)] hover:text-[var(--paper)] px-3 py-1.5 rounded transition shrink-0">
+                    Delete Week
+                </button>
+            </div>
+
+            <div id="modal-daily-container" class="space-y-6">
+                <!-- Daily groups injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>

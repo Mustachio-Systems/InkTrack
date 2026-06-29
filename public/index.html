@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InkTrack — Know What Every Session Is Worth</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="min-h-screen">
+
+    <!-- NAV -->
+    <header class="border-b border-[var(--line)] sticky top-0 z-40 bg-[var(--skin)]/90 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+            <span class="font-display text-2xl tracking-wide text-[var(--paper)]">INK<span class="text-[var(--ink-red-bright)]">TRACK</span></span>
+            <a href="login.html" class="font-mono text-xs uppercase tracking-widest border border-[var(--line-bright)] px-4 py-2 rounded hover:border-[var(--ink-red-bright)] hover:text-[var(--ink-red-bright)] transition">
+                Log In
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="max-w-6xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-20 grid md:grid-cols-2 gap-12 items-center">
+        <div class="rise">
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ink-red-bright)]">For working tattoo artists</span>
+            <h1 class="font-display text-5xl md:text-6xl leading-[1.05] mt-4 text-[var(--paper)]">
+                EVERY PIECE<br>HAS A NUMBER.<br><span class="text-[var(--ink-teal-bright)]">KNOW IT.</span>
+            </h1>
+            <p class="text-[var(--pencil)] text-lg mt-6 max-w-md leading-relaxed">
+                Multiple clients a day? Switching styles between sessions? InkTrack tracks every piece individually. See your real hourly rate, tag your styles, and know exactly what your time is worth.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 mt-8">
+                <a href="signup.html" class="font-mono text-sm uppercase tracking-widest bg-[var(--ink-red)] text-[var(--paper)] px-6 py-3.5 text-center rounded hover:bg-[var(--ink-red-dim)] transition">
+                    Start Tracking — Free
+                </a>
+                <a href="login.html" class="font-mono text-sm uppercase tracking-widest border border-[var(--line-bright)] px-6 py-3.5 text-center rounded hover:border-[var(--paper)] transition">
+                    I Have an Account
+                </a>
+            </div>
+            <p class="font-mono text-xs text-[var(--pencil-dim)] mt-4">No card. No studio software contract. Just your numbers.</p>
+        </div>
+
+        <!-- Signature element: a stencil card with halftone texture -->
+        <div class="rise" style="animation-delay: 0.15s">
+            <div class="stencil-card halftone p-6 md:p-8 max-w-sm mx-auto md:ml-auto rotate-[-1.2deg]">
+                <div class="flex justify-between items-center border-b border-[var(--line-bright)] pb-3 mb-4">
+                    <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--pencil)]">Today's Sessions</span>
+                    <span class="font-mono text-[10px] text-[var(--pencil-dim)]">№ 0148</span>
+                </div>
+                
+                <!-- Mock Session 1 -->
+                <div class="mb-4 pb-4 border-b border-[var(--line)]">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[var(--paper)] font-bold text-sm">Sarah - Floral Piece</span>
+                        <span class="text-[var(--ink-gold)] text-[10px] uppercase tracking-wide border border-[var(--ink-gold)]/40 px-1.5 py-0.5 rounded">Fine Line</span>
+                    </div>
+                    <div class="space-y-1.5 font-mono text-xs">
+                        <div class="flex justify-between"><span class="text-[var(--pencil)]">Gross</span><span class="text-[var(--ink-teal-bright)]">$400.00</span></div>
+                        <div class="flex justify-between"><span class="text-[var(--pencil)]">Time</span><span>2.5 hrs</span></div>
+                    </div>
+                </div>
+
+                <!-- Mock Session 2 -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[var(--paper)] font-bold text-sm">Mike - Full Sleeve</span>
+                        <span class="text-[var(--ink-gold)] text-[10px] uppercase tracking-wide border border-[var(--ink-gold)]/40 px-1.5 py-0.5 rounded">Traditional</span>
+                    </div>
+                    <div class="space-y-1.5 font-mono text-xs">
+                        <div class="flex justify-between"><span class="text-[var(--pencil)]">Gross</span><span class="text-[var(--ink-teal-bright)]">$1,200.00</span></div>
+                        <div class="flex justify-between"><span class="text-[var(--pencil)]">Time</span><span>6.0 hrs</span></div>
+                        <div class="flex justify-between"><span class="text-[var(--pencil)]">Supplies</span><span class="text-[var(--ink-red-bright)]">−$45.00</span></div>
+                    </div>
+                </div>
+
+                <div class="border-t border-[var(--line-bright)] mt-4 pt-4 flex justify-between items-baseline">
+                    <span class="font-mono text-xs uppercase tracking-widest text-[var(--pencil)]">Day's Real Rate</span>
+                    <span class="font-display text-3xl text-[var(--paper)]">$238<span class="text-base text-[var(--pencil)]">/hr</span></span>
+                </div>
+                <div class="mt-3 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--ink-teal-bright)] tick-dot"></span>
+                    <span class="font-mono text-[10px] text-[var(--pencil-dim)] uppercase tracking-widest">2 clients. 8.5 hours. $2,023 net.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="max-w-6xl mx-auto px-5 md:px-8 py-16 border-t border-[var(--line)]">
+        <h2 class="font-display text-3xl md:text-4xl text-center mb-2">BUILT FOR THE CHAIR, NOT THE SPREADSHEET</h2>
+        <p class="text-[var(--pencil)] text-center mb-12 max-w-xl mx-auto">Log multiple sessions a day in seconds. We handle the math.</p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="panel grain p-6">
+                <span class="font-mono text-xs text-[var(--ink-red-bright)]">01</span>
+                <h3 class="font-display text-xl mt-3 mb-2">Track Every Client</h3>
+                <p class="text-[var(--pencil)] text-sm leading-relaxed">Doing three walk-ins and a full back piece in one day? Log them individually. See which client and which style actually paid the best per hour.</p>
+            </div>
+            <div class="panel grain p-6">
+                <span class="font-mono text-xs text-[var(--ink-teal-bright)]">02</span>
+                <h3 class="font-display text-xl mt-3 mb-2">Your True Pace</h3>
+                <p class="text-[var(--pencil)] text-sm leading-relaxed">Stop guessing your yearly income. We average out every session you log to project your real monthly and annual take-home.</p>
+            </div>
+            <div class="panel grain p-6">
+                <span class="font-mono text-xs text-[var(--ink-gold)]">03</span>
+                <h3 class="font-display text-xl mt-3 mb-2">Style Analytics</h3>
+                <p class="text-[var(--pencil)] text-sm leading-relaxed">Tag sessions as Traditional, Realism, Fine Line, and more. Over time, InkTrack reveals which styles are actually your biggest earners.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STYLE SHOWCASE -->
+    <section class="max-w-6xl mx-auto px-5 md:px-8 py-16 border-t border-[var(--line)]">
+        <div class="text-center mb-10">
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-[var(--ink-gold)]">Tag every session</span>
+            <h2 class="font-display text-3xl md:text-4xl mt-3">WORKS FOR HOW YOU TATTOO</h2>
+        </div>
+        <div class="flex flex-wrap justify-center gap-2.5 max-w-2xl mx-auto">
+            <span class="style-pill font-mono text-xs uppercase tracking-wide px-3.5 py-2 rounded">Traditional</span>
+            <span class="style-pill font-mono text-xs uppercase tracking-wide px-3.5 py-2 rounded">Neo-Traditional</span>
+            <span class="style-pill active font-mono text-xs uppercase tracking-wide px-3.5 py-2 rounded">Realism</span>
+            <span class="style-pill font-mono text-xs uppercase tracking-wide px-3.5 py-2 rounded">Fine Line</span>
+            <span class="style-pill font-mono text-xs uppercase tracking-wide px-3.5 py-2 rounded">Blackwork</span>
+            <span class="style-pill font-mono text-xs uppercase tracking-wide px-3.5 py-2 rounded">Japanese</span>
+            <span class="style-pill font-mono text-xs uppercase tracking-wide px-3.5 py-2 rounded">Tribal</span>
+            <span class="style-pill font-mono text-xs uppercase tracking-wide px-3.5 py-2 rounded">Watercolor</span>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="max-w-6xl mx-auto px-5 md:px-8 py-20 border-t border-[var(--line)] text-center">
+        <h2 class="font-display text-3xl md:text-5xl mb-5">START YOUR FIRST TICKET</h2>
+        <p class="text-[var(--pencil)] mb-8 max-w-md mx-auto">Takes under a minute to set up. Log today's sessions right after.</p>
+        <a href="signup.html" class="font-mono text-sm uppercase tracking-widest bg-[var(--ink-red)] text-[var(--paper)] px-8 py-4 inline-block rounded hover:bg-[var(--ink-red-dim)] transition">
+            Create Your Artist Profile
+        </a>
+    </section>
+
+    <footer class="border-t border-[var(--line)] py-8 text-center font-mono text-[11px] text-[var(--pencil-dim)] uppercase tracking-widest">
+        InkTrack — built for the shop, not the spreadsheet
+    </footer>
+
+</body>
+</html>
