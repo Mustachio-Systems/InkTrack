@@ -122,13 +122,13 @@ export function parseCookie(cookieHeader, name) {
 
 export function sessionCookie(token, expiresAt) {
   const expires = new Date(expiresAt).toUTCString();
-  // Secure + HttpOnly + SameSite=Strict: JS on the page can never read this
-  // cookie, and it is never sent on cross-site requests.
-  return `inktrack_session=${token}; Path=/; Expires=${expires}; HttpOnly; Secure; SameSite=Strict`;
+  // Secure + HttpOnly + SameSite=None: Required for cross-origin (pages.dev -> workers.dev)
+  return `inktrack_session=${token}; Path=/; Expires=${expires}; HttpOnly; Secure; SameSite=None`;
 }
 
 export function clearSessionCookie() {
-  return `inktrack_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=Strict`;
+  // Secure + HttpOnly + SameSite=None: Required for cross-origin
+  return `inktrack_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=None`;
 }
 
 // ---------- Basic brute-force throttling ----------
